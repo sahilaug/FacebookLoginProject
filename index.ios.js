@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import FacebookLoginScreen from './FacebookLoginScreen';
+import Homepage from './Homepage';
 class FacebookLoginProject extends Component {
 
   render() {
@@ -32,13 +34,7 @@ class FacebookLoginProject extends Component {
     var routeId = route.id;
     if (routeId === 'FirstScreen') {
       return (
-        <FirstScreen
-          navigator={navigator} />
-      );
-    }
-    if (routeId === 'FacebookLoginScreen') {
-      return (
-        <FacebookLogin
+        <FacebookLoginScreen
           navigator={navigator} />
       );
     }
