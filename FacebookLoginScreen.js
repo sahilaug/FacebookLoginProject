@@ -3,6 +3,7 @@ const {
   LoginButton,
   AccessToken
 } = FBSDK;
+
 import React, { Component } from 'react';
 import {
   View,
@@ -10,8 +11,18 @@ import {
   } from 'react-native';
 
 class FacebookLoginScreen extends Component {
-  goToHomePage() {
+  goToHomePage(accessToken) {
     this.props.navigator.replace({id: 'Homepage'});
+  }
+
+  componentWillMount () {
+    console.log(AccessToken)
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        if(data)
+        this.goToHomePage();
+      }
+    )
   }
 
   render() {
@@ -26,10 +37,9 @@ class FacebookLoginScreen extends Component {
               } else if (result.isCancelled) {
                 alert("login is cancelled.");
               } else {
-                goToHomePage();
                 AccessToken.getCurrentAccessToken().then(
                   (data) => {
-                    alert(data.accessToken.toString())
+                    this.goToHomePage();
                   }
                 )
               }
